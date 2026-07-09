@@ -67,3 +67,5 @@ paper/              # LaTeX manuscript + compiled PDF
 docs/               # design documents
 requirements.txt
 ```
+
+Details can be found in the following manuscript: https://www.researchgate.net/publication/408632762_HALO_An_Attention-Free_Language_Model_Architecture_Built_from_Compressed_Sensing?channel=doi&linkId=6a4f57fea1fbd16347077100&showFulltext=true
