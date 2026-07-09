@@ -15,7 +15,7 @@ No attention, no softmax over positions, no KV cache.
 - **Serving.** O(1) memory per sequence (kilobytes), per-token compute independent of
   context length, prefill = parallel associative scan, state fork = memcpy.
 
-See `paper/halo_manuscript.tex` (and `.pdf`) for the full manuscript, and
+See  https://www.researchgate.net/publication/408632762_HALO_An_Attention-Free_Language_Model_Architecture_Built_from_Compressed_Sensing?channel=doi&linkId=6a4f57fea1fbd16347077100&showFulltext=true for the full manuscript, and
 `docs/halo-cs-lm-design.md` for the working design document.
 
 ## Quickstart
@@ -63,9 +63,6 @@ commands, and the scaling recipe.
 halo_prototype.py   # full model + all three experiments (~280 lines)
 TRAINING.md         # detailed training guide (Exp 1 + Exp 2 on benchmarks)
 corpus.txt          # sample training text for Exp 2
-paper/              # LaTeX manuscript + compiled PDF
 docs/               # design documents
 requirements.txt
 ```
-
-Details can be found in the following manuscript: https://www.researchgate.net/publication/408632762_HALO_An_Attention-Free_Language_Model_Architecture_Built_from_Compressed_Sensing?channel=doi&linkId=6a4f57fea1fbd16347077100&showFulltext=true
