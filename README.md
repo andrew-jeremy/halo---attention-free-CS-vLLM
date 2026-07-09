@@ -15,7 +15,7 @@ No attention, no softmax over positions, no KV cache.
 - **Serving.** O(1) memory per sequence (kilobytes), per-token compute independent of
   context length, prefill = parallel associative scan, state fork = memcpy.
 
-See  https://www.researchgate.net/publication/408632762_HALO_An_Attention-Free_Language_Model_Architecture_Built_from_Compressed_Sensing?channel=doi&linkId=6a4f57fea1fbd16347077100&showFulltext=true for the full manuscript, and
+See `paper/halo_manuscript.tex` (and `.pdf`) for the full manuscript, and
 `docs/halo-cs-lm-design.md` for the working design document.
 
 ## Quickstart
@@ -59,10 +59,30 @@ commands, and the scaling recipe.
 
 ## Repo layout
 
+## GPU benchmark (DGX Spark / any CUDA machine)
+
+`benchmark/` contains a size-matched three-way comparison — HALO vs Transformer vs
+Mamba, ~10M params each, byte-level enwik8, test bits/char — with a frozen protocol:
+
+```bash
+cd benchmark
+python data.py --dataset enwik8
+python train.py --model halo --preset 10m --data data/enwik8 --steps 50000
+python eval.py  --ckpt runs/halo_10m_s0/best.pt --data data/enwik8
 ```
-halo_prototype.py   # full model + all three experiments (~280 lines)
+
+See `benchmark/README.md` (DGX Spark runbook) and `benchmark/PROTOCOL.md`. The GPU
+HALO uses rotation binding + a chunked parallel scan (verified against the sequential
+reference to 2e-6) so training speed is matmul-bound like the baselines.
+
+## Repo layout
+
+```
+halo_prototype.py   # toy model + all three paper experiments (~280 lines)
 TRAINING.md         # detailed training guide (Exp 1 + Exp 2 on benchmarks)
 corpus.txt          # sample training text for Exp 2
+benchmark/          # GPU harness: data.py, train.py, eval.py, models/, PROTOCOL.md
+paper/              # LaTeX manuscript + compiled PDF
 docs/               # design documents
 requirements.txt
 ```

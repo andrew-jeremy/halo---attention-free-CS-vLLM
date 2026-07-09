@@ -9,7 +9,7 @@ Experiments:
 
 Usage: python halo_prototype.py --exp all [--corpus path.txt]
 
-Andrew Kiruluta, UC Berkeley, CA.
+Andrew Kiruluta, UC Berkeley, CA. 2026.
 """
 
 import argparse, math, time
